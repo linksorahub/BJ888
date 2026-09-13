@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Làm Thế Nào Để Khắc Phục Lỗi Khi Đăng Nhập Tài Khoản?</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Chevrons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #121F28;
+            --accent-gold: #D4AF37;
+            --bg-white: #FFFFFF;
+            --bg-light: #F4F4F4;
+            --text-dark: #333333;
+            --text-muted: #555555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo-container img {
+            height: 40px;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #121F28 0%, #1a2f3d 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            color: #FFFFFF;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            max-width: 900px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 14px 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #e6c547;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Section Dividers CSS Gradient */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            width: 100%;
+        }
+
+        /* Sections Background Alternation */
+        section {
+            padding: 80px 10%;
+        }
+
+        section:nth-of-type(odd) {
+            background-color: var(--bg-white);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-light);
+        }
+
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        p, ul.text-list {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        a {
+            color: var(--accent-gold);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-container {
+            margin-top: 30px;
+        }
+
+        .faq-card {
+            background-color: var(--bg-white);
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .faq-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .faq-question i {
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-card.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .faq-card.active .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 20px 20px;
+        }
+
+        /* Responsive Navbar toggling (Mobile) */
+        .menu-toggle {
+            display: none;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            }
+            nav ul.active {
+                display: flex;
+            }
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.webp" alt="Logo">
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#gioi-thieu">Giới Thiệu</a></li>
+                <li><a href="#nguyen-nhan">Nguyên Nhân</a></li>
+                <li><a href="#cach-kiem-tra">Cách Kiểm Tra</a></li>
+                <li><a href="#cac-buoc">Các Bước Khắc Phục</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 data-aos="fade-up" data-aos-duration="1000">Làm Thế Nào Để Khắc Phục Lỗi Khi Đăng Nhập Tài Khoản?</h1>
+        <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <a href="#gioi-thieu" class="cta-button">Xem Chi Tiết Khắc Phục</a>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 1: Giới Thiệu -->
+    <section id="gioi-thieu">
+        <div class="content-container" data-aos="fade-up">
+            <h2>Giới Thiệu</h2>
+            <p>Nhiều người có thể gặp lỗi khi đăng nhập dù đã nhập đúng tên tài khoản và mật khẩu. Một số lỗi thường gặp gồm mật khẩu bị từ chối, trang đăng nhập không phản hồi, mã xác minh không được gửi hoặc tài khoản liên tục bị đăng xuất. Những vấn đề này có thể xuất phát từ thông tin tài khoản, kết nối mạng, trình duyệt hoặc hệ thống xác thực.</p>
+            <p>Để khắc phục, người dùng nên kiểm tra từng nguyên nhân theo đúng thứ tự thay vì thử nhiều cách cùng lúc. Trước tiên, hãy xác nhận lại thông tin đăng nhập. Sau đó kiểm tra kết nối mạng, bộ nhớ đệm của trình duyệt và phương thức xác minh. Cách này giúp xác định nguyên nhân dễ hơn và xử lý lỗi nhanh chóng.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 2: Những Nguyên Nhân Thường Khiến Tài Khoản Không Đăng Nhập Được -->
+    <section id="nguyen-nhan">
+        <div class="content-container" data-aos="fade-up">
+            <h2>Những Nguyên Nhân Thường Khiến Tài Khoản Không Đăng Nhập Được</h2>
+            
+            <h3>Thông Tin Đăng Nhập Không Chính Xác</h3>
+            <p>Một trong những nguyên nhân phổ biến là người dùng nhập sai tên tài khoản, email hoặc số điện thoại. Mật khẩu cũng cần được kiểm tra kỹ vì hệ thống thường phân biệt chữ hoa và chữ thường. Ngoài ra, một khoảng trắng vô tình được thêm vào trước hoặc sau thông tin cũng có thể khiến yêu cầu đăng nhập bị từ chối.</p>
+
+            <h3>Kết Nối Mạng Không Ổn Định</h3>
+            <p>Kết nối Wi-Fi hoặc dữ liệu di động chập chờn có thể làm gián đoạn quá trình xác thực. Trong một số trường hợp, DNS hoặc đường truyền đến máy chủ không ổn định. Trang đăng nhập vẫn có thể mở bình thường nhưng yêu cầu xác thực không hoàn tất do kết nối bị gián đoạn.</p>
+
+            <h3>Trình Duyệt Hoặc Ứng Dụng Gặp Lỗi</h3>
+            <p>Bộ nhớ đệm và cookie cũ đôi khi gây xung đột với phiên đăng nhập mới. Phiên đăng nhập trước đó cũng có thể chưa được xử lý đúng. Nếu đang sử dụng ứng dụng, phiên bản quá cũ có thể không tương thích với hệ thống hiện tại và làm quá trình đăng nhập thất bại.</p>
+
+            <h3>Hệ Thống Xác Minh Hoặc Máy Chủ Gặp Sự Cố</h3>
+            <p>Mã OTP có thể được gửi chậm khi hệ thống xác minh đang quá tải. Máy chủ cũng có thể tạm thời ngừng hoạt động để bảo trì hoặc xử lý lượng truy cập lớn. Khi đó, yêu cầu đăng nhập có thể bị từ chối tạm thời dù thông tin tài khoản hoàn toàn chính xác.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 3: Cách kiểm tra lỗi trước khi thử đăng nhập lại -->
+    <section id="cach-kiem-tra">
+        <div class="content-container" data-aos="fade-up">
+            <h2>Cách kiểm tra lỗi trước khi thử đăng nhập lại</h2>
+            <p>Trước khi thử đăng nhập nhiều lần, nên xác định nguyên nhân khiến tài khoản không truy cập được. Kiểm tra lần lượt kết nối Internet, thông tin tài khoản và trạng thái hệ thống giúp loại bỏ những lỗi phổ biến mà không cần thay đổi cài đặt không cần thiết.</p>
+
+            <h3>Kiểm tra kết nối Internet</h3>
+            <p>Trước tiên, hãy mở một trang web khác để xem kết nối có hoạt động bình thường hay không. Nếu trang tải chậm hoặc không mở được, hãy chuyển giữa Wi-Fi và dữ liệu di động để kiểm tra lại. Khi cần xác minh tài khoản, nên hạn chế sử dụng mạng công cộng vì kết nối có thể không ổn định hoặc tiềm ẩn rủi ro bảo mật.</p>
+
+            <h3>Kiểm tra thông tin tài khoản</h3>
+            <p>Hãy xác nhận bạn đang sử dụng đúng phương thức đăng nhập đã đăng ký. Kiểm tra Caps Lock và bảo đảm mật khẩu được nhập chính xác, đặc biệt với các ký tự viết hoa và viết thường. Không nên sử dụng hoặc lưu mật khẩu từ những nguồn không đáng tin cậy.</p>
+
+            <h3>Kiểm tra trạng thái hệ thống</h3>
+            <p>Kiểm tra xem website hoặc ứng dụng có thông báo bảo trì hay giân đoạn dịch vụ hay không. Bạn cũng có thể thử đăng nhập trên thiết bị khác. Nếu nhiều người cùng gặp lỗi trong cùng thời điểm, nguyên nhân có thể nằm ở phía máy chủ thay vì tài khoản của bạn.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 4: Các bước khắc phục lỗi đăng nhập theo thứ tự -->
+    <section id="cac-buoc">
+        <div class="content-container" data-aos="fade-up">
+            <h2>Các bước khắc phục lỗi đăng nhập theo thứ tự</h2>
+            <p>Khi gặp lỗi đăng nhập, nên xử lý từ những nguyên nhân đơn giản trước thay vì lập tức thay đổi nhiều cài đặt. Cách này giúp xác định chính xác vấn đề nằm ở phiên đăng nhập, dữ liệu trình duyệt, ứng dụng, mật khẩu hay thiết bị. Hãy thực hiện từng bước và thử đăng nhập lại sau mỗi thay đổi.</p>
+
+            <h3>Bước 1 — Đăng xuất các phiên cũ</h3>
+            <p>Trước tiên, đóng những tab đăng nhập đang mở. Nếu tài khoản vẫn được đăng nhập trên thiết bị khác, hãy đăng xuất các phiên không còn sử dụng nếu hệ thống cung cấp tùy chọn này. Sau đó, mở lại trang hoặc ứng dụng và thử đăng nhập một lần nữa. Việc làm mới phiên có thể giải quyết lỗi do phiên đăng nhập cũ bị hết hạn hoặc hoạt động không đúng.</p>
+
+            <h3>Bước 2 — Xóa cache và cookie</h3>
+            <p>Cache và cookie bị lỗi có thể khiến trang sử dụng dữ liệu đăng nhập cũ. Hãy xóa dữ liệu của website liên quan trong trình duyệt, sau đó đóng và khởi động lại trình duyệt. Bạn cũng có thể thử đăng nhập bằng cửa sổ riêng tư để kiểm tra. Nếu đăng nhập được trong chế độ này, dữ liệu lưu trữ hoặc tiện ích mở rộng của trình duyệt có thể là nguyên nhân.</p>
+
+            <h3>Bước 3 — Cập nhật ứng dụng hoặc trình duyệt</h3>
+            <p>Kiểm tra phiên bản ứng dụng hoặc trình duyệt đang sử dụng. Nếu có bản cập nhật, hãy cài đặt từ nguồn chính thức. Phiên bản quá cũ có thể gặp lỗi tương thích hoặc không còn được hệ thống hỗ trợ. Tránh sử dụng APK, tiện ích mở rộng hoặc phần mềm đăng nhập từ những nguồn không rõ ràng vì chúng có thể gây lỗi hoặc tạo rủi ro bảo mật.</p>
+
+            <h3>Bước 4 — Đặt lại mật khẩu khi cần</h3>
+            <p>Nếu các bước trên không hiệu quả, hãy sử dụng chức năng khôi phục tài khoản để đặt lại mật khẩu. Tạo mật khẩu mới đủ mạnh và không dùng lại mật khẩu đó cho nhiều dịch vụ. Sau khi thay đổi, nhập lại thông tin đăng nhập cẩn thận và kiểm tra xem lỗi có được giải quyết hay không.</p>
+
+            <h3>Bước 5 — Thử thiết bị hoặc trình duyệt khác</h3>
+            <p>Cuối cùng, hãy thử đăng nhập trên một thiết bị hoặc trình duyệt khác. Nếu tài khoản hoạt động bình thường ở đó, vấn đề có thể nằm ở thiết bị, trình duyệt hoặc dữ liệu cục bộ ban đầu. Khi đó, bạn có thể tập trung kiểm tra các cài đặt trên thiết bị gặp lỗi thay vì thay đổi thông tin tài khoản không cần thiết.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 5: Khi nào lỗi đăng nhập liên quan đến xác minh tài khoản? -->
+    <section>
+        <div class="content-container" data-aos="fade-up">
+            <h2>Khi nào lỗi đăng nhập liên quan đến xác minh tài khoản?</h2>
+            <p>Một số lỗi đăng nhập không xuất phát từ mật khẩu hoặc trình duyệt mà liên quan đến bước xác minh tài khoản. Điều này thường xảy ra khi hệ thống yêu cầu mã bảo mật để xác nhận bạn là chủ tài khoản.</p>
+
+            <h3>Không nhận được mã xác minh</h3>
+            <p>Nếu mã xác minh không đến, trước tiên hãy kiểm tra lại số điện thoại hoặc địa chỉ email đã đăng ký. Với mã gửi qua email, hãy kiểm tra cả thư mục Spam hoặc Junk. Nếu vẫn chưa nhận được, đừng liên tục yêu cầu mã mới. Hãy chờ vài phút rồi thử lại để tránh tạo quá nhiều yêu cầu cùng lúc.</p>
+
+            <h3>Mã xác minh không hoạt động</h3>
+            <p>Khi nhận được nhiều mã, hãy sử dụng mã mới nhất vì các mã trước đó có thể đã hết hiệu lực. Tránh nhập nhiều mã liên tiếp nếu chưa chắc mã nào đang được hệ thống chấp nhận. Bạn cũng nên kiểm tra thời gian hiệu lực của mã và nhập mã ngay sau khi nhận được.</p>
+
+            <h3>Tài khoản bị giới hạn tạm thời</h3>
+            <p>Nếu nhập sai mật khẩu hoặc mã xác minh quá nhiều lần, tài khoản có thể bị giới hạn đăng nhập trong một khoảng thời gian. Trong trường hợp này, hãy ngừng thử liên tục và chờ thời gian khóa kết thúc nếu hệ thống thông báo. Nếu vẫn không thể truy cập sau đó, hãy sử dụng kênh hỗ trợ chính thức để khôi phục tài khoản.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 6: Cách xử lý khi lỗi chỉ xảy ra trên một thiết bị -->
+    <section>
+        <div class="content-container" data-aos="fade-up">
+            <h2>Cách xử lý khi lỗi chỉ xảy ra trên một thiết bị</h2>
+            <p>Nếu tài khoản đăng nhập bình thường trên thiết bị khác nhưng gặp lỗi trên một thiết bị cụ thể, nguyên nhân thường nằm ở trình duyệt, cài đặt hệ thống hoặc kết nối mạng. Bạn có thể kiểm tra lần lượt các yếu tố sau.</p>
+
+            <h3>Kiểm tra cài đặt trình duyệt</h3>
+            <p>Hãy kiểm tra xem cookie và JavaScript có đang được bật hay không, đồng thời đảm bảo trình duyệt được phép lưu dữ liệu của website. Các extension hoặc add-on, đặc biệt là tiện ích chặn quảng cáo hay bảo mật, cũng có thể can thiệp vào quá trình đăng nhập. Bạn có thể tạm thời vô hiệu hóa chúng và thử lại. Ví dụ, khi gặp vấn đề đăng nhập trên một nền tảng trực tuyến như <a href="https://bj888.poker/">BJ888</a>, việc kiểm tra trình duyệt, kết nối và phiên đăng nhập có thể giúp xác định lỗi nằm ở đâu.</p>
+
+            <h3>Kiểm tra ngày và giờ thiết bị</h3>
+            <p>Ngày hoặc giờ hệ thống không chính xác có thể ảnh hưởng đến việc xác thực phiên đăng nhập. Hãy bật tùy chọn tự động cập nhật ngày và giờ, sau đó khởi động lại trình duyệt và thử lại.</p>
+
+            <h3>Kiểm tra DNS và mạng</h3>
+            <p>Thử chuyển sang một mạng khác, chẳng hạn dữ liệu di động, để xem lỗi có biến mất không. Bạn cũng có thể khởi động lại router. Không nên thay đổi các thiết lập DNS hoặc mạng nâng cao nếu bạn không hiểu rõ tác động của chúng.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 7: Những cách xử lý không nên thực hiện khi gặp lỗi đăng nhập -->
+    <section>
+        <div class="content-container" data-aos="fade-up">
+            <h2>Những cách xử lý không nên thực hiện khi gặp lỗi đăng nhập</h2>
+            <p>Khi không thể đăng nhập, việc xử lý vội vàng đôi khi khiến tình hình trở nên phức tạp hơn. Một số hành động dưới đây nên tránh để bảo vệ tài khoản và rút ngắn thời gian khắc phục.</p>
+
+            <h3>Không thử mật khẩu liên tục</h3>
+            <p>Nếu nhập sai mật khẩu nhiều lần, hệ thống có thể kích hoạt cơ chế bảo vệ và tạm thời giới hạn đăng nhập. Việc tiếp tục thử liên tục cũng có thể khiến thời gian khôi phục kéo dài hơn. Hãy kiểm tra lại thông tin và sử dụng chức năng đặt lại mật khẩu khi cần.</p>
+
+            <h3>Không cung cấp mã xác minh cho người khác</h3>
+            <p>OTP và mã khôi phục tài khoản phải được giữ riêng tư. Không gửi mã xác minh, mật khẩu hoặc thông tin đăng nhập qua tin nhắn cho người lạ, ngay cả khi họ tự nhận là nhân viên hỗ trợ.</p>
+
+            <h3>Không tải phần mềm từ nguồn không đáng tin cậy</h3>
+            <p>Các ứng dụng, APK hoặc công cụ không rõ nguồn gốc có thể chứa malware hoặc phần mềm đánh cắp thông tin. Hãy chỉ tải ứng dụng và tiện ích từ nguồn chính thức, đồng thời kiểm tra nhà phát triển trước khi cài đặt.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 8: Khi nào cần liên hệ bộ phận hỗ trợ? -->
+    <section>
+        <div class="content-container" data-aos="fade-up">
+            <h2>Khi nào cần liên hệ bộ phận hỗ trợ?</h2>
+            <p>Nếu đã thử các bước khắc phục cơ bản nhưng vẫn không thể đăng nhập, việc liên hệ bộ phận hỗ trợ chính thức có thể giúp xác định vấn đề liên quan đến tài khoản hoặc hệ thống.</p>
+
+            <h3>Các trường hợp nên yêu cầu hỗ trợ</h3>
+            <p>Bạn nên yêu cầu hỗ trợ nếu không thể tự khôi phục mật khẩu, không nhận được mã xác minh sau khi đã kiểm tra email hoặc số điện thoại, hoặc tài khoản bị khóa hay giới hạn mà không rõ lý do. Ngoài ra, nếu đăng nhập thất bại trên nhiều thiết bị và mạng khác nhau, khả năng vấn đề nằm ở tài khoản hoặc dịch vụ sẽ cao hơn.</p>
+
+            <h3>Thông tin nên chuẩn bị</h3>
+            <p>Khi gửi yêu cầu, hãy cung cấp tên tài khoản hoặc email liên quan, thời điểm lỗi bắt đầu xảy ra, thông báo lỗi chính xác và thiết bị, trình duyệt đang sử dụng. Tuy nhiên, không bao giờ gửi mật khẩu, OTP hoặc mã khôi phục cho bất kỳ bộ phận hỗ trợ nào nếu chưa xác thực rõ ràng.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 9: FAQ -->
+    <section id="faq">
+        <div class="content-container" data-aos="fade-up">
+            <h2>Câu hỏi thường gặp về lỗi đăng nhập</h2>
+            
+            <div class="faq-container">
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Vì sao nhập đúng mật khẩu nhưng vẫn không đăng nhập được?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Mật khẩu đúng không phải lúc nào cũng đảm bảo đăng nhập thành công. Lỗi có thể đến từ phiên đăng nhập cũ, cookie hoặc cache bị lỗi, trình duyệt, kết nối mạng, bước xác minh tài khoản hoặc sự cố tạm thời từ máy chủ.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Tại sao không nhận được mã xác minh?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hãy kiểm tra lại số điện thoại hoặc email đăng ký, bao gồm cả thư mục Spam/Junk. Đồng thời kiểm tra kết nối mạng và tránh yêu cầu mã quá nhiều lần trong thời gian ngắn, vì hệ thống có thể giới hạn số lần gửi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Xóa cookie có giúp khắc phục lỗi đăng nhập không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Có thể. Nếu cookie hoặc session lưu thông tin không chính xác, chúng có thể gây xung đột trong quá trình xác thực. Xóa cookie của website rồi khởi động lại trình duyệt có thể giúp tạo một phiên đăng nhập mới.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Có nên thử đăng nhập trên thiết bị khác không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Có. Đây là cách đơn giản để xác định lỗi nằm ở tài khoản hay thiết bị. Nếu đăng nhập được ở thiết bị khác, hãy tập trung kiểm tra trình duyệt, ứng dụng và cài đặt của thiết bị ban đầu.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Làm gì nếu tài khoản bị khóa sau nhiều lần đăng nhập?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ngừng thử mật khẩu liên tục và chờ thời gian khóa tạm thời nếu được thông báo. Sau đó, sử dụng quy trình khôi phục chính thức.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Khi nào lỗi đăng nhập cần được hỗ trợ trực tiếp?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nếu các bước cơ bản không hiệu quả, tài khoản bị hạn chế không rõ nguyên nhân hoặc không thể hoàn tất quá trình khôi phục, hãy liên hệ bộ phận hỗ trợ chính thức.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Section 10: Kết luận -->
+    <section>
+        <div class="content-container" data-aos="fade-up">
+            <h2>Kết luận</h2>
+            <p>Lỗi đăng nhập có thể xuất phát từ nhiều nguyên nhân, từ thông tin tài khoản không chính xác đến kết nối Internet, trình duyệt, ứng dụng, bước xác minh hoặc sự cố hệ thống. Thay vì thử ngẫu nhiên, hãy kiểm tra theo trình tự: thông tin tài khoản → Internet → trình duyệt/app → xác minh → trạng thái hệ thống. Tránh nhập mật khẩu hoặc yêu cầu mã liên tục trong thời gian ngắn. Nếu vẫn không thể truy cập, hãy ưu tiên phương thức khôi phục và kênh hỗ trợ chính thức để bảo vệ tài khoản.</p>
+        </div>
+    </section>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion Functionality
+        const faqCards = document.querySelectorAll('.faq-card');
+
+        faqCards.forEach(card => {
+            const questionBtn = card.querySelector('.faq-question');
+            questionBtn.addEventListener('click', () => {
+                // Optional: Close other cards
+                faqCards.forEach(item => {
+                    if (item !== card) {
+                        item.classList.remove('active');
+                    }
+                });
+                card.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
